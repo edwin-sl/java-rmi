@@ -9,7 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
  * Created by edwin on 10/14/2015.
  */
 public class Server implements Hello {
-    @Override
+
     public String sayHello() {
         return "Hello, world!";
     }
