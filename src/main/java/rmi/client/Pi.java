@@ -32,7 +32,8 @@ public class Pi implements Task<BigDecimal> {
     /**
      * Calculate pi.
      */
-    public BigDecimal execute() {
+    public BigDecimal execute(Object... args) {
+
         return computePi(digits);
     }
 

@@ -1,7 +1,9 @@
 package rmi.server;
 
+import rmi.server.implementation.RemoteTaskListImpl;
 import rmi.server.interfaces.RemoteTask;
-import rmi.server.interfaces.RemoteTaskImpl;
+import rmi.server.implementation.RemoteTaskImpl;
+import rmi.server.interfaces.RemoteTaskList;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -16,13 +18,15 @@ public class Server {
 //            System.setSecurityManager(new SecurityManager());
 //        }
         try {
-            String name = "Compute";
+            Registry registry = LocateRegistry.createRegistry(1099);
 
             RemoteTask engine = new RemoteTaskImpl();
             RemoteTask stub = (RemoteTask) UnicastRemoteObject.exportObject(engine, 0);
+            registry.bind("Compute", stub);
 
-            Registry registry = LocateRegistry.createRegistry(1099);
-            registry.rebind(name, stub);
+            RemoteTaskList taskList = new RemoteTaskListImpl();
+            RemoteTaskList stubList = (RemoteTaskList) UnicastRemoteObject.exportObject(taskList, 0);
+            registry.bind("TaskList", stubList);
 
             System.out.println("ComputeEngine bound");
         } catch (Exception e) {
