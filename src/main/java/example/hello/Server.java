@@ -25,9 +25,9 @@ public class Server implements Hello {
             Registry registry = LocateRegistry.createRegistry(1099);
             registry.bind("Hello", stub);
 
-            System.err.println("Server ready: " + java.net.InetAddress.getLocalHost().getHostAddress());
+            System.err.println("rmi.server.Server ready: " + java.net.InetAddress.getLocalHost().getHostAddress());
         } catch (Exception e) {
-            System.err.println("Server exception: " + e.toString());
+            System.err.println("rmi.server.Server exception: " + e.toString());
             e.printStackTrace();
         }
     }

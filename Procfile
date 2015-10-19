@@ -1,1 +1,1 @@
-worker: java -cp target/classes example.hello.Server
+worker: java -cp target/classes example.hello.rmi.server.Server
